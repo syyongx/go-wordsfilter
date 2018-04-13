@@ -39,16 +39,9 @@ func (node *Node) Add(text string, root map[string]*Node, placeholder string) {
 				}
 			}
 		} else {
-			var placeholders string
-			var child map[string]*Node
+			placeholders, child := "", make(map[string]*Node)
 			if i == end {
 				placeholders = strings.Repeat(placeholder, end+1)
-			} else {
-				child = make(map[string]*Node)
-			}
-			root[word] = &Node{
-				Child:        make(map[string]*Node),
-				Placeholders: placeholders,
 			}
 			root[word] = NewNode(child, placeholders)
 			root = child
