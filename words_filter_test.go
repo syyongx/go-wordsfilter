@@ -24,6 +24,6 @@ func TestWordsFilter(t *testing.T) {
 	}
 	r1 := wf.Replace("Game ความรุ่งโรจน์ i like 妲己 heroMiyamotoMusashi", root)
 	if r1 != "Game*************ilike**hero***************" {
-		t.Errorf("TestContains expect Game*************ilike**hero***************,get %T,%v", r1, r1)
+		t.Errorf("TestReplace expect Game*************ilike**hero***************,get %T,%v", r1, r1)
 	}
 }
