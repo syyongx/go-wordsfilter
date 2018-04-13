@@ -124,7 +124,7 @@ loop:
 		}
 
 		e++
-		back = back[0:0]
+		back = back[:0]
 	}
 	bf.WriteString(string(textr[s:e]))
 
