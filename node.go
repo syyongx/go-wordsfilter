@@ -115,9 +115,9 @@ loop:
 			}
 			last := back[bl-1]
 			back = back[:bl-1]
-			if p := last.Placeholders; p != "" {
+			if last.Placeholders != "" {
 				bf.WriteString(string(textr[s:e]))
-				bf.WriteString(p)
+				bf.WriteString(last.Placeholders)
 				s, e = i, i
 				continue loop
 			}
