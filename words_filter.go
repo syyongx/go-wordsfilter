@@ -10,7 +10,7 @@ type WordsFilter struct {
 	placeholder string
 	stripSpace  bool
 	node        *Node
-	mutex       sync.Mutex
+	mutex       sync.RWMutex
 }
 
 // New creates a filter.
@@ -46,6 +46,8 @@ func (wf *WordsFilter) Replace(text string, root map[string]*Node) string {
 	if wf.stripSpace {
 		text = stripSpace(text)
 	}
+	wf.mutex.RLock()
+	defer wf.mutex.RUnlock()
 	return wf.node.Replace(text, root)
 }
 
@@ -54,6 +56,8 @@ func (wf *WordsFilter) Contains(text string, root map[string]*Node) bool {
 	if wf.stripSpace {
 		text = stripSpace(text)
 	}
+	wf.mutex.RLock()
+	defer wf.mutex.RUnlock()
 	return wf.node.Contains(text, root)
 }
 
