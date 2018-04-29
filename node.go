@@ -1,4 +1,4 @@
-package WordsFilter
+package wordsfilter
 
 import (
 	"strings"

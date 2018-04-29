@@ -1,9 +1,12 @@
-package WordsFilter
+package wordsfilter
 
 import (
 	"sync"
 	"strings"
 	"bytes"
+	"os"
+	"bufio"
+	"io"
 )
 
 type WordsFilter struct {
@@ -29,6 +32,36 @@ func (wf *WordsFilter) Generate(texts []string) map[string]*Node {
 		wf.Add(text, root)
 	}
 	return root
+}
+
+// Convert sensitive text from file into sensitive word tree nodes.
+// File content format, please wrap every sensitive word.
+func (wf *WordsFilter) GenerateWithFile(path string) (map[string]*Node, error) {
+	fd, err := os.Open(path)
+	if err != nil {
+		return nil, err
+	}
+	defer fd.Close()
+	buf := bufio.NewReader(fd)
+	var texts []string
+	for {
+		line, _, err := buf.ReadLine()
+		if err != nil {
+			if err == io.EOF {
+				break
+			} else {
+				return nil, err
+			}
+		}
+		text := strings.Trim(string(line), " \\t\\n\\r\\0\\x0B")
+		if text == "" {
+			continue
+		}
+		texts = append(texts, text)
+	}
+
+	root := wf.Generate(texts)
+	return root, nil
 }
 
 // Add sensitive words to specified sensitive words Map.

@@ -1,4 +1,4 @@
-package WordsFilter
+package wordsfilter
 
 import (
 	"testing"
@@ -25,5 +25,10 @@ func TestWordsFilter(t *testing.T) {
 	r1 := wf.Replace("Game ความรุ่งโรจน์ i like 妲己 heroMiyamotoMusashi", root)
 	if r1 != "Game*************ilike**hero***************" {
 		t.Errorf("TestReplace expect Game*************ilike**hero***************,get %T,%v", r1, r1)
+	}
+	// Test generated with file.
+	root, _ = wf.GenerateWithFile("./words_test.txt")
+	if wf.Contains("アンジェラ", root) != true {
+		t.Errorf("TestContains expect true,get %T,%v", c2, c2)
 	}
 }
