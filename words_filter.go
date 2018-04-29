@@ -71,7 +71,7 @@ func (wf *WordsFilter) Add(text string, root map[string]*Node) {
 	}
 	wf.mutex.Lock()
 	defer wf.mutex.Unlock()
-	wf.node.Add(text, root, wf.placeholder)
+	wf.node.add(text, root, wf.placeholder)
 }
 
 // Replace sensitive words in strings and return new strings.
@@ -81,7 +81,7 @@ func (wf *WordsFilter) Replace(text string, root map[string]*Node) string {
 	}
 	wf.mutex.RLock()
 	defer wf.mutex.RUnlock()
-	return wf.node.Replace(text, root)
+	return wf.node.replace(text, root)
 }
 
 // Whether the string contains sensitive words.
@@ -91,7 +91,7 @@ func (wf *WordsFilter) Contains(text string, root map[string]*Node) bool {
 	}
 	wf.mutex.RLock()
 	defer wf.mutex.RUnlock()
-	return wf.node.Contains(text, root)
+	return wf.node.contains(text, root)
 }
 
 // Remove specified sensitive words from sensitive word map.
@@ -101,7 +101,7 @@ func (wf *WordsFilter) Remove(text string, root map[string]*Node) {
 	}
 	wf.mutex.Lock()
 	defer wf.mutex.Unlock()
-	wf.node.Remove(text, root)
+	wf.node.remove(text, root)
 }
 
 // Strip space

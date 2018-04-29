@@ -19,7 +19,7 @@ func NewNode(child map[string]*Node, placeholders string) *Node {
 }
 
 // Add sensitive words to specified sensitive words Map.
-func (node *Node) Add(text string, root map[string]*Node, placeholder string) {
+func (node *Node) add(text string, root map[string]*Node, placeholder string) {
 	if text == "" {
 		return
 	}
@@ -50,7 +50,7 @@ func (node *Node) Add(text string, root map[string]*Node, placeholder string) {
 }
 
 // Remove specified sensitive words from sensitive word map.
-func (node *Node) Remove(text string, root map[string]*Node) {
+func (node *Node) remove(text string, root map[string]*Node) {
 	textr := []rune(text)
 	end := len(textr) - 1
 	for i := 0; i <= end; i++ {
@@ -69,7 +69,7 @@ func (node *Node) Remove(text string, root map[string]*Node) {
 
 // Replace sensitive words in strings and return new strings.
 // Follow the principle of maximum matching.
-func (node *Node) Replace(text string, root map[string]*Node) string {
+func (node *Node) replace(text string, root map[string]*Node) string {
 	if root == nil || text == "" {
 		return text
 	}
@@ -132,7 +132,7 @@ loop:
 }
 
 // Whether the string contains sensitive words.
-func (node *Node) Contains(text string, root map[string]*Node) bool {
+func (node *Node) contains(text string, root map[string]*Node) bool {
 	if root == nil || text == "" {
 		return false
 	}
