@@ -27,14 +27,16 @@ func main() {
     // Generate with file
     // root := wf.GenerateWithFile(path)
 
-    // Remove
-    wf.Remove("shif", root)
-
     // Contains
     c1 := wf.Contains("アン", root)
     fmt.Println(c1) // false
     c2 := wf.Contains("アンジェラ", root)
-    fmt.Println(c1) // true
+    fmt.Println(c2) // true
+
+    // Remove
+    wf.Remove("アンジェラ", root)
+    c3 := wf.Contains("アンジェラ", root)
+    fmt.Println(c3) // false
 
     // Replace
     r1 := wf.Replace("Game ความรุ่งโรจน์ i like 妲己 heroMiyamotoMusashi", root)
