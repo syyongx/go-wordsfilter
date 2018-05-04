@@ -6,7 +6,7 @@ A high performance text filter.
 go get github.com/syyongx/WordsFilter-go
 ```
 
-## Instructions for use
+## Usage Instructions
 ```
 import (
     "fmt"
