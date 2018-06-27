@@ -9,18 +9,21 @@ import (
 	"io"
 )
 
+var DefaultPlaceholder = "*"
+var DefaultStripSpace = true
+
 type WordsFilter struct {
-	placeholder string
-	stripSpace  bool
+	Placeholder string
+	StripSpace  bool
 	node        *Node
 	mutex       sync.RWMutex
 }
 
-// New creates a filter.
-func NewWordsFilter(placeholder string, stripSpace bool) *WordsFilter {
+// New creates a words filter.
+func New() *WordsFilter {
 	return &WordsFilter{
-		placeholder: placeholder,
-		stripSpace:  stripSpace,
+		Placeholder: DefaultPlaceholder,
+		StripSpace:  DefaultStripSpace,
 		node:        NewNode(make(map[string]*Node), ""),
 	}
 }
@@ -66,17 +69,17 @@ func (wf *WordsFilter) GenerateWithFile(path string) (map[string]*Node, error) {
 
 // Add sensitive words to specified sensitive words Map.
 func (wf *WordsFilter) Add(text string, root map[string]*Node) {
-	if wf.stripSpace {
+	if wf.StripSpace {
 		text = stripSpace(text)
 	}
 	wf.mutex.Lock()
 	defer wf.mutex.Unlock()
-	wf.node.add(text, root, wf.placeholder)
+	wf.node.add(text, root, wf.Placeholder)
 }
 
 // Replace sensitive words in strings and return new strings.
 func (wf *WordsFilter) Replace(text string, root map[string]*Node) string {
-	if wf.stripSpace {
+	if wf.StripSpace {
 		text = stripSpace(text)
 	}
 	wf.mutex.RLock()
@@ -86,7 +89,7 @@ func (wf *WordsFilter) Replace(text string, root map[string]*Node) string {
 
 // Whether the string contains sensitive words.
 func (wf *WordsFilter) Contains(text string, root map[string]*Node) bool {
-	if wf.stripSpace {
+	if wf.StripSpace {
 		text = stripSpace(text)
 	}
 	wf.mutex.RLock()
@@ -96,7 +99,7 @@ func (wf *WordsFilter) Contains(text string, root map[string]*Node) bool {
 
 // Remove specified sensitive words from sensitive word map.
 func (wf *WordsFilter) Remove(text string, root map[string]*Node) {
-	if wf.stripSpace {
+	if wf.StripSpace {
 		text = stripSpace(text)
 	}
 	wf.mutex.Lock()

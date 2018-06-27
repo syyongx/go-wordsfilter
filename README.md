@@ -20,7 +20,7 @@ func main() {
         "アンジェラ",
         "ความรุ่งโรจน์",
     }
-    wf := NewWordsFilter("*", true)
+    wf := wordsfilter.New()
 
     // Generate
     root := wf.Generate(texts)

@@ -11,7 +11,7 @@ func TestWordsFilter(t *testing.T) {
 		"アンジェラ",
 		"ความรุ่งโรจน์",
 	}
-	wf := NewWordsFilter("*", true)
+	wf := New()
 	root := wf.Generate(texts)
 	wf.Remove("shif", root)
 	c1 := wf.Contains("アン", root)
