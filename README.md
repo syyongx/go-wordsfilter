@@ -1,16 +1,16 @@
-# WordsFilter-go
+# go-wordsfilter
 A high performance text filter.
 
 ## Download & Install
 ```shell
-go get github.com/syyongx/WordsFilter-go
+go get github.com/syyongx/go-wordsfilter
 ```
 
 ## Usage Instructions
 ```
 import (
     "fmt"
-    "github.com/syyongx/WordsFilter-go"
+    "github.com/syyongx/go-wordsfilter"
 )
 
 func main() {
@@ -45,4 +45,4 @@ func main() {
 ```
 
 ## LICENSE
-WordsFilter-go source code is licensed under the [MIT](https://github.com/syyongx/WordsFilter-go/blob/master/LICENSE) Licence.
+go-wordsfilter source code is licensed under the [MIT](https://github.com/syyongx/go-wordsfilter/blob/master/LICENSE) Licence.
