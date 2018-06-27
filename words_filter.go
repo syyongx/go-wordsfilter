@@ -56,7 +56,7 @@ func (wf *WordsFilter) GenerateWithFile(path string) (map[string]*Node, error) {
 				return nil, err
 			}
 		}
-		text := strings.Trim(string(line), " \\t\\n\\r\\0\\x0B")
+		text := strings.TrimSpace(string(line))
 		if text == "" {
 			continue
 		}
