@@ -9,7 +9,6 @@ go get github.com/syyongx/go-wordsfilter
 ## Usage Instructions
 ```
 import (
-    "fmt"
     "github.com/syyongx/go-wordsfilter"
 )
 
