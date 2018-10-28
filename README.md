@@ -7,7 +7,7 @@ go get github.com/syyongx/go-wordsfilter
 ```
 
 ## Usage Instructions
-```
+```go
 import (
     "github.com/syyongx/go-wordsfilter"
 )
