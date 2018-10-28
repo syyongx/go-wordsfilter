@@ -6,7 +6,7 @@ A high performance text filter.
 go get github.com/syyongx/go-wordsfilter
 ```
 
-## Usage Instructions
+## Quick Start
 ```go
 import (
     "github.com/syyongx/go-wordsfilter"
@@ -41,6 +41,17 @@ func main() {
     r1 := wf.Replace("Game ความรุ่งโรจน์ i like 妲己 heroMiyamotoMusashi", root)
     // r1: Game*************ilike**hero***************
 }
+```
+
+## Apis
+```go
+New() *WordsFilter
+Generate(texts []string) map[string]*Node
+GenerateWithFile(path string) (map[string]*Node, error)
+Add(text string, root map[string]*Node)
+Replace(text string, root map[string]*Node) string
+Contains(text string, root map[string]*Node) bool
+Remove(text string, root map[string]*Node)
 ```
 
 ## LICENSE
