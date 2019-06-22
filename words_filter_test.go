@@ -16,19 +16,19 @@ func TestWordsFilter(t *testing.T) {
 	wf.Remove("shif", root)
 	c1 := wf.Contains("アン", root)
 	if c1 != false {
-		t.Errorf("TestContains expect false,get %T,%v", c1, c1)
+		t.Errorf("Test Contains expect false, get %T, %v", c1, c1)
 	}
-	c2 := wf.Contains("アンジェラ", root)
+	c2 := wf.Contains("->アンジェラ2333", root)
 	if c2 != true {
-		t.Errorf("TestContains expect true,get %T,%v", c2, c2)
+		t.Errorf("Test Contains expect true, get %T, %v", c2, c2)
 	}
 	r1 := wf.Replace("Game ความรุ่งโรจน์ i like 妲己 heroMiyamotoMusashi", root)
 	if r1 != "Game*************ilike**hero***************" {
-		t.Errorf("TestReplace expect Game*************ilike**hero***************,get %T,%v", r1, r1)
+		t.Errorf("Test Replace expect Game*************ilike**hero***************,get %T,%v", r1, r1)
 	}
 	// Test generated with file.
 	root, _ = wf.GenerateWithFile("./words_test.txt")
 	if wf.Contains("アンジェラ", root) != true {
-		t.Errorf("TestContains expect true,get %T,%v", c2, c2)
+		t.Errorf("Test Contains expect true, get %T, %v", c2, c2)
 	}
 }

@@ -1,8 +1,8 @@
 package wordsfilter
 
 import (
-	"strings"
 	"bytes"
+	"strings"
 )
 
 type Node struct {
@@ -144,10 +144,13 @@ func (node *Node) contains(text string, root map[string]*Node) bool {
 			if i == end {
 				return n.Placeholders != ""
 			} else {
+				if len(n.Child) == 0 { // last
+					return true
+				}
 				root = n.Child
 			}
 		} else {
-			break
+			continue
 		}
 	}
 	return false
