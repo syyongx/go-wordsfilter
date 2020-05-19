@@ -69,6 +69,9 @@ func (wf *WordsFilter) GenerateWithFile(path string) (map[string]*Node, error) {
 
 // Add sensitive words to specified sensitive words Map.
 func (wf *WordsFilter) Add(text string, root map[string]*Node) {
+	if len(strings.TrimSpace(text)) <= 0 {
+		return
+	}
 	if wf.StripSpace {
 		text = stripSpace(text)
 	}
